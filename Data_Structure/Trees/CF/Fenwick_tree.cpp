@@ -1,45 +1,68 @@
 #include <iostream>
-#include <vector>
+
 using namespace std;
-
-int mergesort(vector<int> &v, int l, int r)
+#define ll long long
+struct FenwickTree
 {
-    if (l >= r)
-        return 0;
-    int ans = 0;
+    ll *BIT;
+    ll *a;
+    int n;
 
-    int m = l + (r - l) / 2;
-    ans += mergesort(v, l, m);
-    ans += mergesort(v, m + 1, r);
-
-    vector<int> x(v.begin() + l, v.begin() + m + 1);
-    vector<int> y(v.begin() + m + 1, v.begin() + r + 1);
-
-    int i = 0, j = 0;
-    while (i < x.size() && j < y.size())
+    FenwickTree()
     {
-        if (x[i] <= y[j])
-            v[l++] = x[i++];
-        else
+        cin >> n;
+        BIT = new ll[n + 5]();
+        a = new ll[n + 5]();
+    }
+    void update(int pos, int val)
+    {
+        while (pos <= n)
         {
-            ans += x.size() - i;
-            v[l++] = y[j++];
+            BIT[pos] += val;
+            pos += pos & -pos;
         }
     }
 
-    while (i < x.size())
-        v[l++] = x[i++];
-    while (j < y.size())
-        v[l++] = y[j++];
+    ll query(int pos)
+    {
+        ll ans = 0;
+        while (pos)
+        {
+            ans += BIT[pos];
+            pos -= pos & -pos;
+        }
 
-    return ans;
-}
+        return ans;
+    }
+
+    void clear()
+    {
+        delete[] BIT;
+        delete[] a;
+    }
+};
+
 int main()
 {
-    vector<int> v{5, 4, 3, 2, 1};
-    cout << mergesort(v, 0, v.size() - 1) << "\n";
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
 
-    for (int i = 0; i < v.size(); ++i)
-        cout << v[i] << " ";
+    FenwickTree tree;
+
+    for (int i = 1; i <= tree.n; ++i)
+    {
+        cin >> tree.a[i];
+        tree.update(i, tree.a[i]);
+    }
+
+    for (int i = 1; i <= tree.n; ++i)
+        cout << tree.BIT[i] << " ";
+
+    int l, r;
+    cin >> l >> r;
+    cout << "\n\n"
+         << tree.query(r) - tree.query(l - 1) << " ";
+    tree.clear();
+
     return 0;
 }
