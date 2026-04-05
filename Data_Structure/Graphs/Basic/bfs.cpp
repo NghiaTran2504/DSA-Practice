@@ -96,7 +96,6 @@ void inp(Graph &g, int n, int m){
     for (int i = 1; i <= m; ++i){
         int x, y; cin >> x >> y;
         addEdge (g.list[x], g.tail[x], y);
-        addEdge (g.list[y], g.tail[y], x);
     }
 }
 
@@ -126,5 +125,19 @@ int main(){
     inp (g, n, m);
     bool visited[n+5]{};
     bfs (g, 1, visited, n);
+
+    // for (int i = 1; i <= n; ++i){
+    //     Node* curr = g.list[i];
+    //     if (curr == NULL){
+    //         cout << "Node " << i << " la duong cut\n";
+    //     }
+    //     else{
+    //         while (curr != NULL){
+    //             cout << curr -> vertex << " ";
+    //             curr = curr -> next;
+    //         }
+    //         cout << "\n";
+    //     }
+    // }
     return 0;
 }
