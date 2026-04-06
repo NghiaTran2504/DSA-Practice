@@ -9,85 +9,107 @@ struct Pair{
 
 struct Node{
     Pair coordinate;
-    Node* next;
-    Node (int x, int y){
-        coordinate.x = x;
-        coordinate.y = y;
+    Node * next;
+    Node (Pair p){
+        coordinate = p;
         next = NULL;
     }
 };
-void addNode (Node* &head, Pair val){
-    Node* newNode = new Node (val.x, val.y);
-    newNode -> next = head;
-    head = newNode;
+
+void addBack (Node* &front, Node* &back, Pair p){
+    Node* newNode = new Node (p);
+    if (front == NULL){
+        front = back = newNode;
+    }
+    else{
+        back -> next = newNode;
+        back = newNode;
+    }
 }
 
-void deleteNode (Node* &head){
-    if (head == NULL) return;
-    Node* tmp = head;
-    head = head -> next;
-    delete tmp;
+void deleteFirst (Node* &front, Node* &back){
+    if (front == NULL) return;
+    if (front -> next == NULL){
+        delete front;
+        front = back = NULL;
+    }
+    else{
+        Node* tmp = front;
+        front = front -> next;
+        delete tmp;
+    }
 }
-
-struct Stack{
-    Node* top;
+struct Queue{
+    Node* front, *back;
     int size;
-    Stack(){
-        top = NULL;
+    Queue(){
+        front = back = NULL;
         size = 0;
     }
-    void push(Pair val){
-        addNode (top, val);
+    void push (Pair p){
+        addBack (front, back, p);
         size++;
     }
     void pop(){
-        deleteNode (top);
+        deleteFirst (front, back);
         size--;
     }
-    bool empty(){
+
+    bool empty (){
         return size == 0;
     }
-    void print(){
-        Node* curr = top;
-        cout << "Stack hien tai la: ";
+
+    Pair Front(){
+        return front -> coordinate;
+    }
+
+    ~Queue(){
+        Node* curr = front;
         while (curr != NULL){
-            cout << "{" << curr ->coordinate.x << ", " << curr -> coordinate.y << "}, ";
+            Node* tmp = curr;
             curr = curr -> next;
+            delete tmp;
         }
-        cout << "\n";
     }
 };
 
-long long maxx (long long a, long long b){
-    if (a >= b) return a;
-    else return b;
-}
-
-void dfs (int dx[], int dy[], long long &vol, int row, int col, int** mat, int n, int m){
-    Stack st;
+void bfs(int dx[], int dy[], int** a, int n, int m, int row, int col, long long& sum){
+    Queue q;
     Pair p;
-    p.x = row; p.y = col;
-    st.push (p);
+    p.x = row;
+    p.y = col;
 
-    while (!st.empty()){
-        int row = st.top -> coordinate.x;
-        int col = st.top -> coordinate.y;
-        vol += mat[row][col];
-        mat[row][col] = 0;
-        st.pop();
+    q.push (p);
+    sum += a[p.x][p.y];
+    a[p.x][p.y] = 0;
 
+    while (!q.empty()){
+        // do sth
+        Pair curr = q.Front();
+        q.pop();
+
+        //tranversal
         for (int i = 0; i < 4; ++i){
-                Pair tmp;
-                tmp.x = row + dx[i];
-                tmp.y = col + dy[i];
-                if (tmp.x >= 1 && tmp.x <= n && tmp.y >= 1 && tmp.y <= m  && mat[tmp.x][tmp.y] > 0){
-                    st.push (tmp);
+            Pair next;
+            next.x = curr.x + dx[i];
+            next.y = curr.y + dy[i];
+            if (next.x >= 1 && next.x <= n && next.y >= 1 && next.y <= m){
+                if (a[next.x][next.y] > 0){
+                    sum += a[next.x][next.y];
+                    a[next.x][next.y] = 0;
+                    q.push (next);
                 }
+            }
         }
     }
 }
-
-int main(){
+long long maxx (long long a, long long b)
+{
+    if (a >= b) return a;
+    return b;
+}
+int main()
+{
     ios_base::sync_with_stdio(0);
     cin.tie(0);
     
@@ -95,31 +117,36 @@ int main(){
     int dy[] = {0, 0, -1, 1};
     int t; cin >> t;
     while (t--){
-        int n, m; cin >> n >> m;
-        int** mat = new int* [n + 5];
+        int n, m;
+        cin >> n >> m;
+        int ** a = new int *[n+5];
         for (int i = 1; i <= n; ++i){
-            mat[i] = new int[m + 5]{};
+            a[i] = new int[m+5];
         }
-
-        for (int i = 1; i <= n; ++i){
-            for (int j = 1; j <= m; ++j)
-                cin >> mat[i][j];
-        }
-
-        long long max_vol = 0;
+        
         for (int i = 1; i <= n; ++i){
             for (int j = 1; j <= m; ++j){
-                long long val = 0;
-                if (mat[i][j] > 0) dfs (dx, dy, val, i, j, mat, n, m);
-                max_vol = maxx (max_vol, val);
+                cin >> a[i][j];
             }
         }
 
-        cout << max_vol << "\n";
+        long long ans = 0;
+        for (int i = 1; i <= n; ++i){
+            for (int j = 1; j <= m; ++j){
+                long long sum = 0;
+                if (a[i][j] > 0){
+                    bfs (dx, dy, a, n, m, i, j, sum);
+                }
+                ans = maxx (ans, sum);
+            }
+        }
+
+        cout << ans << "\n";
 
         for (int i = 1; i <= n; ++i){
-            delete[] mat[i];
+            delete[] a[i];
         }
-        delete[] mat;
+        delete[] a;
     }
+    return 0;
 }
