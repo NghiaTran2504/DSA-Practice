@@ -56,6 +56,10 @@ struct Stack{
         }
         cout << "\n";
     }
+
+    Pair Top(){
+        return top -> coordinate;
+    }
 };
 
 long long maxx (long long a, long long b){
@@ -64,20 +68,30 @@ long long maxx (long long a, long long b){
 }
 
 void dfs (int dx[], int dy[], long long &vol, int row, int col, int** mat, int n, int m){
-
+    Stack st;
     Pair curr;
-    curr.x = row; curr.y = col;
+    curr.x = row; 
+    curr.y = col;
+    st.push (curr);
     vol += mat[curr.x][curr.y];
     mat[curr.x][curr.y] = 0;
 
-    //tranversal
-    for (int i = 0; i < 4; ++i){
+    while (!st.empty()){
+        curr = st.Top();
+        st.pop();
+
         Pair nxt;
-        nxt.x = curr.x + dx[i];
-        nxt.y = curr.y + dy[i];
-        if (nxt.x >= 1 && nxt.x <= n && nxt.y >= 1 && nxt.y <= m){
-            if (mat[nxt.x][nxt.y] > 0)
-                dfs (dx, dy, vol, nxt.x, nxt.y, mat, n, m);
+        for (int i = 0; i < 4; ++i){
+            nxt.x = curr.x + dx[i];
+            nxt.y = curr.y + dy[i];
+            if (nxt.x >= 1 && nxt.x <= n && nxt.y >= 1 && nxt.y <= m){
+                if (mat[nxt.x][nxt.y] > 0){
+                    
+                    vol += mat[nxt.x][nxt.y];
+                    st.push (nxt);
+                    mat[nxt.x][nxt.y] = 0;
+                }
+            }
         }
     }
 }
