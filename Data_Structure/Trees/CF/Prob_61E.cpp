@@ -96,6 +96,7 @@ void solve(){
         Update (bit, a[i], n);
     }
 
+    
     memset (bit, 0, sizeof(ll) * (n + 5));
 
     for (int i = n; i >= 1; --i){
