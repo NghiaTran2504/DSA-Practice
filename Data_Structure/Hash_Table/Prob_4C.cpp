@@ -26,10 +26,8 @@ ll hashFunc (char *s){
     ll p = 31, m = 1e4 + 7;
     ll returnVal = 0;
     for (int i = 0; i < strlen(s); ++i){
-        returnVal = (returnVal * p + (ll)s[i]) % m;
-        p = (p * 31) % m;
+        returnVal = (returnVal * 31 + (ll)s[i]) % m;
     }
-
     return returnVal;
 }
 int main(){
