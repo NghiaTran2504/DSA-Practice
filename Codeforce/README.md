@@ -1,7 +1,7 @@
 # # 🚀 Codeforce problems
 
 This is a folder storing all codeforce problems that I have encountered.
----
+
 
 ## 🛣️ `Graph`
 | Problem | Code | Rating | Problem tags | Notes
