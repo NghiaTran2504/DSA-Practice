@@ -6,9 +6,9 @@
 - **Language:** C++
 - **Current goal:** 
 
-    *Rating 1800+ codeforce
-    *Solve 200 competitive problems (Leetcode, Codeforce, CSES, MarisaOJ)
-    *Enhance logical thinking, mastering using various data structure
+    * Rating 1800+ codeforce
+    * Solve 200 competitive problems (Leetcode, Codeforce, CSES, MarisaOJ)
+    * Enhance logical thinking, mastering using various data structure
 
 ## 📂 Folder structure
 - `Algorithm/`: Core algorithms (BFS, DFS, DSU, Dijkstra, etc.)
