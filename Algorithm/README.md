@@ -3,7 +3,7 @@
 This is a folder where I store basic logic & implementation of new data structures & algorithms related to graphs problems
 ---
 
-## 🛣️ `Graph/`
+## 🛣️ `Graph`
 - **Data structure:**
 
     - Adjancency matrix/list
@@ -17,7 +17,7 @@ This is a folder where I store basic logic & implementation of new data structur
     - Shortest path: *BFS, Dijkstra, Floyd - Warshal, Bellman - Ford*
     - Minimum spanning tree: *Kruskal, Prim*
 
-## 🌲 `Tree/`
+## 🌲 `Tree`
 - **Data structure:**
 
     - AVL tree
@@ -25,7 +25,7 @@ This is a folder where I store basic logic & implementation of new data structur
     - Fenwick tree
     - Segment tree
 
-## #️⃣ `Hash_Table/`
+## #️⃣ `Hash_Table`
 
 ## 🤔 Running code
 - Paste this cmd line in terminal to run code: `g++ "file_name" -o nghia && ./nghia <input.txt> output.txt`
