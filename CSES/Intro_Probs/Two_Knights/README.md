@@ -30,7 +30,7 @@ $$
 <summary> Nhấn để xem: </summary>
 
 $$
-\frac{(n \cdot n)(n \cdot n - 1)}{2} - 4(n-1)(n-2)
+ - 4(n-1)(n-2)
 $$
 
 </details>
