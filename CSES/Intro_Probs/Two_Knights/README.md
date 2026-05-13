@@ -13,8 +13,14 @@
 <details>
 <summary> Ans: </summary>
 
-$$2(n-1)(n-2)$$
-==> Số ô không thỏa: $$4(n-1)(n-2)$$
+$$ 
+2(n-1)(n-2)
+$$
+
+==> **Số ô không thỏa**: 
+$$
+4(n-1)(n-2)
+$$
 
 </details>
 
@@ -22,7 +28,9 @@ $$2(n-1)(n-2)$$
 <details>
 <summary> Nhấn để xem: </summary>
 
-$$ \frac{(n*n)(n*n - 1)}{2}- 4(n-1)(n-2)$$
+$$ 
+\frac{(n*n)(n*n - 1)}{2} - 4(n-1)(n-2)
+$$
 </details>
 
 ## Time & Space complexity
