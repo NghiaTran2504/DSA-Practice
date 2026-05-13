@@ -25,19 +25,13 @@ $$
 
 </details>
 
-### **Có bao nhiêu ô 2x3 và 3x2 trong grid n x n?**
+### Đáp án cuối cùng:
 <details>
-<summary> Ans: </summary>
+<summary> Nhấn để xem: </summary>
 
-$$ 
-2(n-1)(n-2)
-$$
-
-==> **Số ô không thỏa**: 
-
-$$
-4(n-1)(n-2)
-$$
+```math
+\frac{(n*n)(n*n - 1)}{2} - 4(n-1)(n-2)
+```
 
 </details>
 
