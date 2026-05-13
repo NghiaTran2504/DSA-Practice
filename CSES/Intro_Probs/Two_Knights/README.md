@@ -9,7 +9,7 @@
 
 *Cả 2 trường hợp trên đều có 2 trường hợp không thỏa*
 
-### **Có bao nhiêu ô 2x3 và 3x2 trong grid n x n?**
+### **Đáp án cuối cùng:**
 <details>
 <summary> Ans: </summary>
 
@@ -25,13 +25,14 @@ $$
 
 </details>
 
-### Đáp án cuối cùng:
+### **Có bao nhiêu ô 2x3 và 3x2 trong grid n x n?**
 <details>
 <summary> Ans: </summary>
 
-``` 
-\frac{(n \cdot n)(n \cdot n - 1)}{2} - 4(n - 1)(n - 2)
-```
+$$ 
+2(n-1)(n-2)
+$$
+
 </details>
 
 ## Time & Space complexity
