@@ -9,7 +9,7 @@
 
 *Cả 2 trường hợp trên đều có 2 trường hợp không thỏa*
 
-### **Đáp án cuối cùng:**
+### **Có bao nhiêu ô 2x3 và 3x2 trong grid n x n?**
 <details>
 <summary> Ans: </summary>
 
@@ -31,6 +31,12 @@ $$
 
 $$ 
 2(n-1)(n-2)
+$$
+
+==> **Số ô không thỏa**: 
+
+$$
+4(n-1)(n-2)
 $$
 
 </details>
