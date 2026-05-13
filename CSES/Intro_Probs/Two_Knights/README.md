@@ -27,10 +27,10 @@ $$
 
 ### Đáp án cuối cùng:
 <details>
-<summary> Nhấn để xem: </summary>
+<summary> Ans: </summary>
 
-$$
- -4(n-1)(n-2)
+$$ 
+2(n-1)(n-2)
 $$
 
 </details>
